@@ -1,1 +1,20 @@
 @charset "UTF-8";
+
+#wrap {
+	width:1200px;
+	height:800px;
+}
+
+header {
+	height:80px;
+	background-color: #dddddd;
+}
+
+section {
+	height:640px;
+}
+
+footer {
+	height:80px;
+	background-color: #dddddd;
+}
