@@ -10,8 +10,12 @@ header {
 	background-color: #dddddd;
 }
 
-section {
-	height:640px;
+.post {
+	background-color: #dddddd;
+}
+
+.person-size {
+	height:30px;
 }
 
 footer {
