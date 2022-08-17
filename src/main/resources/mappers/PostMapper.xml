@@ -36,7 +36,7 @@
 		(
 			#{userId}
 			, #{post}
-			, #{postImage}
+			, #{image}
 			, now()
 			, now()
 		)

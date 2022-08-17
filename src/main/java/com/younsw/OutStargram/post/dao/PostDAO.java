@@ -12,6 +12,8 @@ public interface PostDAO {
 	
 	public List<Post> selectPost();
 	
-	public int insertPost(@Param("userId") int userId, @Param("post") String post, @Param("postImage") String postImage);
+	public int insertPost(@Param("userId") int userId
+			, @Param("post") String post
+			, @Param("image") String image);
 
 }

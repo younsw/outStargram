@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.younsw.OutStargram.post.heart.dao.HeartDAO">
+
+	<insert id="insertHeart" parameterType="map">
+	
+		INSERT INTO 
+			`heart`
+		(
+			`postId`
+			, `userId`
+			, `createdAt`
+		)
+		VALUE
+		(
+			#{postId}
+			, #{userId}
+			, now()
+		)
+	
+	</insert>
+	
+</mapper>

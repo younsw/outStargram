@@ -27,23 +27,25 @@
 					<a href="/post/create/view" class="btn btn-success">게시물 작성하기</a>
 		 		</c:if>
 			</div>
-			<c:forEach var="post" items="${postList }">
+			<c:forEach var="postDetail" items="${postList }">
 				<div class="d-flex justify-content-center">
 					<div class="col-6 text-center my-4 border">
 						<div class="d-flex justify-content-between">
-						
+						<!-- 게시물 작성자 이름 -->
 							<div class="d-flex justify-content-start">
-								<i class="bi bi-person-circle fa-3x" style="font-size:30px;"></i>&nbsp;
-								<h5 class="mt-3 ">${post.userId } </h5>
+								<i class="bi bi-person-circle fa-3x" style="font-size:25px;"></i>&nbsp;
+								<h5 class="mt-2 ">${postDetail.user.loginId }</h5>
 							</div>
 							
 							<i class="bi bi-three-dots mt-2"></i>
 						</div> 
-						<img class="form-control" src="/static/image/24283C3858F778CA2E.jpeg">
+						<!-- 게시물 사진과 내용과 좋아요 수 댓글   -->
+						<img class="form-control" src="${postDetail.post.postImage }">
 						<div class="d-flex justify-content-start text-border">
 							&nbsp;<i class="bi bi-heart"></i>&nbsp;12 &nbsp;<i class="bi bi-chat"></i>&nbsp;7
 						</div>
-						<textarea class="form-control">${post.post } </textarea>
+						<textarea class="form-control">${postDetail.post.post } </textarea>
+						<!-- 댓글 리스트 -->
 						<div class="d-flex justify-content-start mt-1">
 							댓글
 						</div>
@@ -53,19 +55,15 @@
 								너무 귀엽네요
 							</div>
 						</div>
+						<!-- 댓글 입력 --> 
 						<div class="d-flex mb-3">
 							<input type="text" class="form-control" placeholder="댓글 달기..." id="comentInput">
-							<button class="btn btn-success" id="comentAdd">댓글달기</button>
+							<button class="comentAdd btn btn-success" value="${postDetail.post.id}" id="${postDetail.user.loginId }">댓글달기</button>
 						</div>
 					</div>
 				</div>
 			</c:forEach>	
 		</section>
-		
-			<c:if test="${not empty userId }">
-				
-		 	</c:if>
-		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
@@ -74,24 +72,35 @@
 	
 		$(document).ready(function() {
 			
-			$("#comentAdd").on("click", function() {
-				let coment = $("#comentInput").val();
+			$(".comentAdd").on("click", function() {
+				let postId = $(this).attr('id');
+				let userId = $(this).attr('value');
+				
+				alert(postId);
+				alert(userId);
 				
 				if(coment == "") {
 					alert("댓글을 입력하세요");
 					return false;
 				}
 				
-				$.ajax({
+				
+				
+				/* $.ajax({
 					type:"post",
 					url:"/post/coment"
-					data:{"coment":coment},
+					data:{"coment":coment, "userId":userId},
 					success:function(data) {
 						if(data.result == "success") {
 							location.href="/post/ti"
+						} else {
+							alert("댓글 삽입 실패");
 						}
+					},
+					error:function() {
+						alert("댓글 삽입 에러");
 					}
-				});
+				}); */
 				
 			});
 			

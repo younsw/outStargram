@@ -37,5 +37,10 @@ public class UserBO {
 	 	String encryptPassword = EncrypthUtils.md5(password);
 	 	return userDAO.selectUser(loginId, encryptPassword);
 	}
+	
+	// id로 사용자 정보 조회 기능
+	public User getUserById(int userId) {
+		return userDAO.selectUserById(userId);
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.younsw.OutStargram.post;
+package com.younsw.OutStargram.post.heart;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,32 +7,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.younsw.OutStargram.post.bo.PostBO;
+import com.younsw.OutStargram.post.heart.bo.HeartBO;
 
 @RestController
-public class PostReatController {
+public class HeartRestController {
 	
 	@Autowired
-	private PostBO postBO;
+	private HeartBO heartBO;
 	
-	@PostMapping("/post/creat")
-	public Map<String, String> insertPost(
-			@RequestParam("post") String post
-			, @RequestParam(value="postImage", required=false) MultipartFile postImage
+	@GetMapping("post/heart")
+	public Map<String, String> Heart(
+			@RequestParam("postId") int postId
 			, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		
-		int userId = (Integer)session.getAttribute("userId");
-		
-		int count = postBO.insertPost(userId, post, postImage);
+		int userId = (Integer) session.getAttribute("userId");
 		
 		Map<String, String> result = new HashMap<>();
+		
+		int count = heartBO.addHeart(postId, userId);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -40,7 +37,8 @@ public class PostReatController {
 			result.put("result", "false");
 		}
 		
-		return result;	
+		return result;
+		
 	}
-	
+
 }
