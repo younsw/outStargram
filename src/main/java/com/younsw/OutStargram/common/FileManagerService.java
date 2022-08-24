@@ -66,5 +66,41 @@ public class FileManagerService {
 		return "/images/" + directoryName + file.getOriginalFilename();
 		
 	}
+	
+	public static boolean removeFile(String filePath) { // /images/3-134134/test.png
+		
+		if(filePath == null) {
+			return false;
+		}
+		
+		String realFilePath = FILE_UPLODE_PATH + filePath.replace("/images/", "");
+		
+		Path path = Paths.get(realFilePath);
+		
+		// 파일이 있는지
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+				return false;
+			}
+		}
+		
+		path = path.getParent();
+		
+		// 디렉토리 존재하는지 확인 
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 }

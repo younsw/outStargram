@@ -43,11 +43,11 @@
 	
 		$(document).ready(function() {
 			
-			${"#imageIcon"}.on("click", function(e) {
+			/* ${"#imageIcon"}.on("click", function(e) {
 				// fileInput 을 클릭한 효과를 만들어야 한다
 				e.preventDefult();
 				$("#fileInput").click();
-			});
+			}); */
 			
 			$("#saveBtn").on("click", function() {
 				let post = $("#postInput").val().trim();

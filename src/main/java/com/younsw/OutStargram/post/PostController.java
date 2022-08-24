@@ -2,6 +2,9 @@ package com.younsw.OutStargram.post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +21,13 @@ public class PostController {
 	private PostBO postBO;
 	
 	@GetMapping("/post/timeline/view")
-	public String postView(Model model) {
+	public String postView(Model model
+			, HttpServletRequest request) {
 		
-		List<PostDetail> postDetailList = postBO.selectPost();
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<PostDetail> postDetailList = postBO.selectPost(userId);
 		model.addAttribute("postList", postDetailList);
 		
 		return "post/timeline";

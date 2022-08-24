@@ -24,4 +24,43 @@
 	
 	</insert>
 	
+	<delete id="deleteHeart" parameterType="map">
+	
+		DELETE FROM 
+			`heart`
+		WHERE 
+			`postId` = #{postId}
+			AND `userId` = #{userId}
+	
+	</delete>
+	
+	<select id="getHeartCount" parameterType='int' resultType="int">
+	
+		SELECT 
+			COUNT(*)
+		FROM `heart`
+		WHERE `postId` = #{postId}
+		
+	</select>
+	
+	<select id="selectCountHeartByPostUserId" parameterType="map" resultType="int">
+	
+		SELECT 
+			COUNT(1)
+		FROM
+			`heart`
+		WHERE 
+			`postId` = #{postId}
+			AND `userId` = #{userId}
+	</select>
+	
+	<delete id="deleteByPostId" parameterType="int">
+	
+		DELETE FROM
+			`heart`
+		WHERE 
+			`postId` = #{postId}
+	 
+	</delete>
+	
 </mapper>

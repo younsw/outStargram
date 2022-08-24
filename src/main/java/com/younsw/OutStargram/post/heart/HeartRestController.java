@@ -40,5 +40,28 @@ public class HeartRestController {
 		return result;
 		
 	}
+	
+	// 좋아요 취소 api
+	@GetMapping("post/unheart")
+	public Map<String, String> unHeart(
+			@RequestParam("postId") int postId
+			, HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		
+		int count = heartBO.unHeart(postId, userId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "false");
+		}
+		
+		return result;
+		
+	}
+	
 }

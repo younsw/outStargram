@@ -42,5 +42,31 @@
 		)
 		
 	</insert>
+	
+	<select id="selectPostByPostId" parameterType="int" resultType="com.younsw.OutStargram.post.model.Post">
+	
+		SELECT 
+			`id`
+			, `userId`
+			, `post`
+			, `postImage`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`post`
+		WHERE
+			`id` = #{postId}
+			
+	</select>
+	
+	<delete id="deletePost">
+		
+		DELETE FROM 
+			`post` 
+		WHERE
+			`id` = #{postId}
+			AND `userId` = #{userId}
+		
+	</delete>
 
 </mapper>

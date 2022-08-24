@@ -15,5 +15,9 @@ public interface PostDAO {
 	public int insertPost(@Param("userId") int userId
 			, @Param("post") String post
 			, @Param("image") String image);
+	
+	public Post selectPostByPostId(@Param("postId") int postId);
+	
+	public int deletePost(@Param("postId") int postId, @Param("userId") int userId);
 
 }

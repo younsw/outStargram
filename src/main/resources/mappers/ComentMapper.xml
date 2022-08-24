@@ -27,5 +27,30 @@
 		)
 		
 	</insert>
+	
+	<select id="selectComent" parameterType="int" resultType="com.younsw.OutStargram.post.coment.model.Coment">
+	
+		SELECT 
+			`id`
+			, `userId`
+			, `postId`
+			, `coment`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+		 	`coment`
+		WHERE 
+			postId = #{postId}
+	
+	</select>
+	
+	<delete id="deleteComent" parameterType="int">
+	
+		DELETE FROM
+			`coment`
+		WHERE
+			`postId` = #{postId}
+	
+	</delete>
 
 </mapper>
